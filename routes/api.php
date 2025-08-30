@@ -10,15 +10,15 @@ use App\Http\Controllers\LoanController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+// Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
     Route::get('/books', [BookController::class, 'index']); // daftar buku
     Route::get('/loans', [LoanController::class, 'myLoans']); // pinjaman user sendiri
     Route::post('/loans', [LoanController::class, 'borrow']); // pinjam buku
-});
+// });
 
 // --------------------- PETUGAS ---------------------
 // Role petugas: bisa mengelola pinjaman dan buku
-Route::middleware(['auth:sanctum', 'role:petugas'])->group(function () {
+// Route::middleware(['auth:sanctum', 'role:petugas'])->group(function () {
     Route::get('/books', [BookController::class, 'index']);
     Route::post('/books', [BookController::class, 'store']);
     Route::get('/books/{id}', [BookController::class, 'show']);
@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum', 'role:petugas'])->group(function () {
 
     Route::get('/loans', [LoanController::class, 'index']); // semua pinjaman
     Route::put('/loans/{id}/return', [LoanController::class, 'returnBook']); // kembalikan buku
-});
+// });
 
 // Route::middleware(['auth:sanctum', 'admin'])->group(function() {
 Route::get('/admin/users', [AdminController::class, 'index']);
