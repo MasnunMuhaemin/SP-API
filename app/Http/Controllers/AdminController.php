@@ -20,17 +20,21 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'role' => ['required', Rule::in(['user','admin'])]
+            'role' => ['required', Rule::in(['user', 'admin'])],
+            'tanggal_lahir' => 'nullable|date',
+            'alamat' => 'nullable|string|max:255'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
         ]);
 
-        return response()->json($user, 201);
+        return response()->json($request->all());
     }
 
     public function update(Request $request, User $user)
@@ -39,7 +43,9 @@ class AdminController extends Controller
             'name' => 'string|max:255',
             'email' => ['email', Rule::unique('users')->ignore($user->id)],
             'password' => 'string|min:6',
-            'role' => Rule::in(['user','admin'])
+            'role' => Rule::in(['user', 'admin']),
+            'tanggal_lahir' => 'nullable|date',
+            'alamat' => 'nullable|string|max:255'
         ]);
 
         if ($request->has('password')) {
@@ -47,6 +53,7 @@ class AdminController extends Controller
         }
 
         $user->update($request->all());
+
         return response()->json($user);
     }
 
