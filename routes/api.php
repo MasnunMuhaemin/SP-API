@@ -10,23 +10,24 @@ use App\Http\Controllers\LoanController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-// Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+Route::middleware('auth:sanctum')->prefix('user')->group(function () {
     Route::get('/books', [BookController::class, 'index']); // daftar buku
     Route::get('/loans', [LoanController::class, 'myLoans']); // pinjaman user sendiri
     Route::post('/loans', [LoanController::class, 'borrow']); // pinjam buku
-// });
+});
 
 // --------------------- PETUGAS ---------------------
 // Role petugas: bisa mengelola pinjaman dan buku
-// Route::middleware(['auth:sanctum', 'role:petugas'])->group(function () {
-    Route::get('/books', [BookController::class, 'index']);
-    Route::post('/books', [BookController::class, 'store']);
-    Route::get('/books/{id}', [BookController::class, 'show']);
-    Route::put('/books/{id}', [BookController::class, 'update']);
-    Route::delete('/books/{id}', [BookController::class, 'destroy']);
+// Route::prefix('petugas')->group(function () {
+    Route::get('/petugas/books', [BookController::class, 'index']);
+    Route::post('/petugas/books', [BookController::class, 'store']);
+    Route::get('/petugas/books/{id}', [BookController::class, 'show']);
+    Route::put('/petugas/books/{id}', [BookController::class, 'update']);
+    Route::delete('/petugas/books/{id}', [BookController::class, 'destroy']);
 
-    Route::get('/loans', [LoanController::class, 'index']); // semua pinjaman
-    Route::put('/loans/{id}/return', [LoanController::class, 'returnBook']); // kembalikan buku
+    Route::get('/petugas/loans', [LoanController::class, 'index']); // semua pinjaman
+    Route::patch('/petugas/loans/{id}/return', [LoanController::class, 'returnLoan']);
+    Route::post('/petugas/loans', [LoanController::class, 'borrow']); // pinjam buku
 // });
 
 // Route::middleware(['auth:sanctum', 'admin'])->group(function() {
@@ -40,5 +41,6 @@ Route::get('/admin/books/{id}', [BookController::class, 'show']);
 Route::put('/admin/books/{id}', [BookController::class, 'update']);
 Route::delete('/admin/books/{id}', [BookController::class, 'destroy']);
 Route::get('/admin/loans', [LoanController::class, 'index']); // semua pinjaman
-Route::put('/admin/loans/{id}/return', [LoanController::class, 'returnBook']);
+Route::put('/admin/loans/{id}/return', [LoanController::class, 'returnLoan']);
+Route::post('/admin/loans', [LoanController::class, 'borrow']); // tambah pinjaman baru
 // });
