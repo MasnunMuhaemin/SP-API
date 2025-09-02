@@ -34,8 +34,8 @@ Route::middleware('auth:sanctum')->prefix('petugas')->group(function () {
 Route::middleware('auth:sanctum')->prefix('admin')->group(function() {
 Route::get('/users', [AdminController::class, 'index']);
 Route::post('/users', [AdminController::class, 'store']);
-Route::put('/users/{id}', [AdminController::class, 'update']);
-Route::delete('/users/{id}', [AdminController::class, 'destroy']);
+Route::put('/users/{user}', [AdminController::class, 'update']);
+Route::delete('/users/{user}', [AdminController::class, 'destroy']);
 Route::get('/books', [BookController::class, 'index']);
 Route::post('/books', [BookController::class, 'store']);
 Route::get('/books/{id}', [BookController::class, 'show']);

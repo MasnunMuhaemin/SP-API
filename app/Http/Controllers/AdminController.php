@@ -20,7 +20,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'role' => ['required', Rule::in(['user', 'admin'])],
+             'role'=> ['required', Rule::in(['user', 'petugas'])],
             'tanggal_lahir' => 'nullable|date',
             'alamat' => 'nullable|string|max:255'
         ]);
