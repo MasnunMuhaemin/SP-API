@@ -19,6 +19,7 @@ class BookSeeder extends Seeder
             'penerbit' => 'Informatika Press',
             'tahun_terbit' => 2023,
             'stok' => 10,
+            'image' => 'kotlin_android.jpg',
             'kategori' => 'Pemrograman'
         ]);
 
@@ -28,6 +29,7 @@ class BookSeeder extends Seeder
             'penerbit' => 'Gramedia',
             'tahun_terbit' => 2022,
             'stok' => 5,
+            'image' => 'laravel_pemula.jpg',
             'kategori' => 'Web Development'
         ]);
     }

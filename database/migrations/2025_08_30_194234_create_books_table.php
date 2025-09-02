@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('penerbit')->nullable();
             $table->year('tahun_terbit')->nullable();
             $table->integer('stok')->default(0);
+            $table->string('image')->nullable();
             $table->string('kategori')->nullable();
             $table->timestamps();
         });
