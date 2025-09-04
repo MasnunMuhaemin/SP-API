@@ -15,7 +15,8 @@ class Book extends Model
         'penerbit',
         'tahun_terbit',
         'stok',
-        'kategori'
+        'kategori',
+        'image'
     ];
 
     public function loans() {

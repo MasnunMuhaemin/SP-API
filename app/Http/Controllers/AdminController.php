@@ -43,7 +43,7 @@ class AdminController extends Controller
             'name' => 'string|max:255',
             'email' => ['email', Rule::unique('users')->ignore($user->id)],
             'password' => 'string|min:6',
-            'role' => Rule::in(['user', 'admin']),
+            'role' => Rule::in(['user', 'petugas']),
             'tanggal_lahir' => 'nullable|date',
             'alamat' => 'nullable|string|max:255'
         ]);
